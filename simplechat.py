@@ -2136,64 +2136,184 @@ def merge_json_files(earthquake_file, weather_file, output_file):
     return output_file 
 
 def show_help():
-    help_text = """
-       'translate' : This phrase is added at every sentence to get the french , spanish and swahili translation
-      
-        'translate'  : Cette phrase est ajoutée à chaque phrase pour obtenir la traduction en français, espagnol et swahili.  
-      
-        'translate' : Esta frase se añade a cada oración para obtener la traducción al francés, español y suajili.
-       
-       'translate' : Hii kifungu imeongezwa kwenye kila sentensi kupata tafsiri ya Kifaransa, Kihispania na Kiswahili.
-       
-        'date' :  You can always ask me for the date 
-         
-        'date' :  Tu peux toujours me demander la date
-        
-        'fecha':   Siempre puedes pedirme la fecha
-        
-        'tarehe':  Unaweza kila wakati kuniuliza tarehe
-
-        'time' :   anytime you need the current time in your timezone you can always ask me 
-
-        temps : Chaque fois que tu as besoin de l'heure actuelle dans ton fuseau horaire, tu peux toujours me demander.
-
-        tiempo: Siempre que necesites la hora actual en tu zona horaria, siempre puedes pedírmelo.
-
-        wakati:  Wakati wowote unapotaka saa ya sasa katika eneo lako la muda, unaweza kila wakati kuniuliza.
-
-        'earthquake_report_data': This command prompts me to give you statistics on siesmic activity from 2005 -2025
-
-        'earthquake_report_data':  Cette commande me demande de vous donner des statistiques sur l'activité sismique de 2005 à 2025.
-
-        'earthquake_report_data':  Este comando me pide que te dé estadísticas sobre la actividad sísmica de 2005 a 2025.
-
-        'earthquake_report_data':   Amri hii inanilazimisha kutoa takwimu za shughuli za kutikisa ardhi kuanzia 2005 hadi 2025.
    
-        you can always ask me if you need to view siesmic activity over a period of time between 2005 and 2025 
-
-        Tu peux toujours me demander si tu as besoin de voir l'activité sismique sur une période de temps entre 2005 et 2025.
-   
-        Siempre puedes pedirme si necesitas ver la actividad sísmica durante un período de tiempo entre 2005 y 2025.
-
-        Unaweza kila wakati kuniuliza ikiwa unahitaji kuona shughuli za kutikisa ardhi katika kipindi cha muda kati ya 2005 na 2025.
-        
-        'mag_size' : this command allows you to see all seismic activity of a magnitude of your choosing 
-
-        'mag_size' : Cette commande vous permet de voir toute l'activité sismique d'une magnitude de votre choix.
-
-        'mag_size' : Este comando te permite ver toda la actividad sísmica de una magnitud de tu elección.
-
-        'mag_size' : Amri hii inakuwezesha kuona shughuli zote za kutikisa ardhi za ukubwa wa uchaguzi wako
-
-        'map_view' : View hotspots on the map in your web browser 
-
-        'map_view' : Afficher les points chauds sur la carte dans votre navigateur web.
-
-        'map_view' : Ver los puntos calientes en el mapa en tu navegador web.
-
-        'map_view' :Tazama maeneo ya moto kwenye ramani katika kivinjari chako cha mtandao.
+    # Language selection
+    language_options = """
+    Please choose your language:
+    1. English
+    2. Français (French)
+    3. Español (Spanish)
+    4. Kiswahili (Swahili)
+    
+    Enter the number of your choice (e.g., '1' for English, '2' for French, etc.):
     """
-    return help_text
+    print(language_options)
+    
+    # Get language choice from the user
+    language_choice = input("Your choice: ").strip()
+    
+    # Set the language for the help text based on the user's choice
+    if language_choice == '1' or language_choice.lower() == 'english':
+        help_text = get_help_text('english')
+    elif language_choice == '2' or language_choice.lower() == 'french':
+        help_text = get_help_text('french')
+    elif language_choice == '3' or language_choice.lower() == 'spanish':
+        help_text = get_help_text('spanish')
+    elif language_choice == '4' or language_choice.lower() == 'swahili':
+        help_text = get_help_text('swahili')
+    else:
+        print("Invalid choice. Please try again.")
+        return
+    
+    # Show the selected language's help instructions
+    print(help_text)
+
+def get_help_text(language):
+    # Define help text in different languages
+    if language == 'english':
+        return """
+        Please select one of the following options for detailed help:
+        
+        1 'translate' 
+        2. 'date' 
+        3. 'time' 
+        4. 'view available locations'
+        5. 'search by magnitude'
+        6. 'search by period of occurance' 
+        5. 'get report showing statistics on all earthquakes' 
+        6. 'get report showing statistics on earthquakes of a specific place and time' 
+        7. 'get report showing statistics on weather occurencies'
+        8. 'get report showing statistics on earthquakes and weather occurencies of a specific place and time'
+        9. 'view earthquake data on a map'
+        10. 'view earthquake and weather data on a map'
+        
+        Enter the number or keyword of your choice (e.g., '1', 'date', etc.):
+        """
+    
+    elif language == 'french':
+        return """
+        Veuillez sélectionner l'une des options suivantes pour obtenir de l'aide détaillée :
+       1. 'traduire' 
+       2. 'date' 
+       3. 'heure' 
+       4. 'voir les lieux disponibles'
+       5. 'chercher par magnitude'
+       6. 'chercher par période d'occurrence' 
+       7. 'obtenir un rapport montrant les statistiques sur tous les tremblements de terre' 
+       8. 'obtenir un rapport montrant les statistiques sur les tremblements de terre d'un lieu et d'un moment spécifiques' 
+       9. 'obtenir un rapport montrant les statistiques sur les occurrences météorologiques'
+       10. 'obtenir un rapport montrant les statistiques sur les tremblements de terre et les occurrences météorologiques d'un lieu et d'un moment spécifiques'
+        
+        Entrez le numéro ou le mot-clé de votre choix (par exemple, '1', 'date', etc.) :
+        """
+    
+    elif language == 'spanish':
+        return """
+        Spanish: Por favor, seleccione una de las siguientes opciones para obtener ayuda detallada:
+          Spanish: Por favor, seleccione una de las siguientes opciones para obtener ayuda detallada:
+
+            1. 'traducir'
+            2. 'fecha'
+            3. 'hora'
+            4. 'ver ubicaciones disponibles'
+            5. 'buscar por magnitud'
+            6. 'buscar por período de ocurrencia'
+            7. 'obtener un informe con estadísticas sobre todos los terremotos'
+            8. 'obtener un informe con estadísticas sobre terremotos de un lugar y tiempo específicos'
+            9. 'obtener un informe con estadísticas sobre ocurrencias meteorológicas'
+            10. 'obtener un informe con estadísticas sobre terremotos y ocurrencias meteorológicas de un lugar y tiempo específicos'
+
+            Ingrese el número o la palabra clave de su elección (por ejemplo, '1', 'fecha', etc.):
+            
+   """ 
+    elif language == 'swahili':
+        return """
+        Tafadhali chagua moja ya chaguzi zifuatazo kwa msaada wa kina:
+        tafsiri'
+         1. 'tarehe'
+         2. 'muda'
+         3. 'angalia maeneo yanayopatikana'
+         4. 'tafuta kwa ukubwa'
+         5. 'tafuta kwa kipindi cha tukio'
+         6. 'pata ripoti inayonyesha takwimu za matetemeko ya ardhi yote'
+         7. 'pata ripoti inayonyesha takwimu za matetemeko ya ardhi ya mahali na muda maalum'
+         8. 'pata ripoti inayonyesha takwimu za matukio ya hali ya hewa'
+         9. 'pata ripoti inayonyesha takwimu za matetemeko ya ardhi na matukio ya hali ya hewa ya mahali na muda maalum'
+        10. Ingiza namba au neno muhimu la chaguo lako (kwa mfano, '1', 'tarehe', nk.):
+                    
+        Ingiza nambari au neno la ufunguo la chaguo lako (kwa mfano, '1', 'date', n.k.):
+        """
+    
+    user_choice =input("choose ,choisir ,elegir,chagua:: ")
+
+    if user_choice in ['1', 'translate']:
+        detailed_help = """
+        'translate': This command helps you translate phrases into different languages.
+        
+        - English: "I would like to see earthquake data in French, Spanish, and Swahili."
+        - French: "Cette phrase est ajoutée à chaque phrase pour obtenir la traduction en français, espagnol et suahili."
+        - Spanish: "Esta frase se añade a cada oración para obtener la traducción al francés, español y suajili."
+        - Swahili: "Hii kifungu imeongezwa kwenye kila sentensi kupata tafsiri ya Kifaransa, Kihispania na Kiswahili."
+        """
+        print(detailed_help)
+    
+    elif user_choice in ['2', 'date']:
+        detailed_help = """
+        'date': You can always ask me for the current date.
+        
+        - English: "Can I get the current date?"
+        - French: "Tu peux toujours me demander la date."
+        - Spanish: "Siempre puedes pedirme la fecha."
+        - Swahili: "Unaweza kila wakati kuniuliza tarehe."
+        """
+        print(detailed_help)
+    
+    elif user_choice in ['3', 'time']:
+        detailed_help = """
+        'time': Anytime you need the current time in your timezone, you can always ask me.
+        
+        - English: "Can I get the current time?"
+        - French: "Chaque fois que tu as besoin de l'heure actuelle dans ton fuseau horaire, tu peux toujours me demander."
+        - Spanish: "Siempre que necesites la hora actual en tu zona horaria, siempre puedes pedírmelo."
+        - Swahili: "Wakati wowote unapotaka saa ya sasa katika eneo lako la muda, unaweza kila wakati kuniuliza."
+        """
+        print(detailed_help)
+    
+    elif user_choice in ['4', 'earthquake_report_data']:
+        detailed_help = """
+        'earthquake_report_data': This command provides statistics on seismic activity from 2005 to 2025.
+        
+        - English: "Please give me earthquake report data for the years 2005 to 2025."
+        - French: "Cette commande me demande de vous donner des statistiques sur l'activité sismique de 2005 à 2025."
+        - Spanish: "Este comando me pide que te dé estadísticas sobre la actividad sísmica de 2005 a 2025."
+        - Swahili: "Amri hii inanilazimisha kutoa takwimu za shughuli za kutikisa ardhi kuanzia 2005 hadi 2025."
+        """
+        print(detailed_help)
+    
+    elif user_choice in ['5', 'mag_size']:
+        detailed_help = """
+        'mag_size': This command allows you to see seismic activity of a magnitude of your choosing.
+        
+        - English: "I want to view earthquake magnitudes by size."
+        - French: "Cette commande vous permet de voir toute l'activité sismique d'une magnitude de votre choix."
+        - Spanish: "Este comando te permite ver toda la actividad sísmica de una magnitud de tu elección."
+        - Swahili: "Amri hii inakuwezesha kuona shughuli zote za kutikisa ardhi za ukubwa wa uchaguzi wako."
+        """
+        print(detailed_help)
+    
+    elif user_choice in ['6', 'map_view']:
+        detailed_help = """
+        'map_view': This command helps you view hotspots on the map in your web browser.
+        
+        - English: "View earthquake hotspots on the map in your browser."
+        - French: "Afficher les points chauds sur la carte dans votre navigateur web."
+        - Spanish: "Ver los puntos calientes en el mapa en tu navegador web."
+        - Swahili: "Tazama maeneo ya moto kwenye ramani katika kivinjari chako cha mtandao."
+        """
+        print(detailed_help)
+    
+    else:
+        print("Invalid choice. Please try again.")
 
 def generate_response(input_text):
     
